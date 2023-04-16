@@ -29,6 +29,10 @@ public class PostService {
         System.out.println(posts.size());
         return newPost;
     }
+
+    public static void deletePost(Long id){
+        posts.removeIf(post -> post.getId().equals(id));
+    }
     public Long getId() {
         return id;
     }

@@ -53,8 +53,9 @@
                     <p class="card-text">${post.content}</p>
                     <a href="#" class="card-link">Go somewhere</a>
                     <p href="#" class="card-link">${post.createAt}</p>
-                    <form method="" action="">
-                        <button type="submit" class="btn btn-primary" name="btnDelete">Supprimer</button>
+                    <form method="post" action="posts-list">
+                        <input type="hidden" name="buttonId" value="${post.id}">
+                        <button type="submit" class="btn btn-primary"  id="${post.id}">Supprimer</button>
                     </form>
                 </div>
             </div>

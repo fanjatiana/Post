@@ -30,6 +30,8 @@ public class FormPostsServlet extends HttpServlet {
         String author = request.getParameter("author");
         String content = request.getParameter("content");
 
+
+
         new PostService().createNewPost(title, author, content);
         response.sendRedirect(request.getContextPath() + "/userSession/posts-list");
     }

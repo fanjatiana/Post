@@ -43,6 +43,10 @@ public class Post {
         String formatDateTime = now.format(formatter);
         return formatDateTime;
     }
+
+    public Long getId() {
+        return id;
+    }
 }
 
 
