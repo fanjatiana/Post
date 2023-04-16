@@ -19,8 +19,9 @@ public class PostsListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PostService postService = new PostService();
         List<Post> postList = postService.fetchAllPosts();
-        request.setAttribute("posts",postList);
+        request.setAttribute("postList",postList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/posts-list.jsp");
         requestDispatcher.forward(request,response);
     }
+
 }

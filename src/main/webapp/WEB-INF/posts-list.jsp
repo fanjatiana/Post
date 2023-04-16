@@ -20,8 +20,8 @@
 </header>
 <main>
     <div class="container-fluid d-flex flex-wrap justify-content-around mt-4">
-        <c:forEach var="post" items="${posts}">
-            <div id=${post.id} class="card" style="width: 18rem;">
+        <c:forEach var="post" items="${postList}">
+            <div id="{post.id}" class="card" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${post.title}</h5>
@@ -29,6 +29,9 @@
                     <p class="card-text">${post.content}</p>
                     <a href="#" class="card-link">Go somewhere</a>
                     <p href="#" class="card-link">${post.createAt}</p>
+                    <form method="" action="">
+                        <button type="submit" class="btn btn-primary" name="btnDelete">Supprimer</button>
+                    </form>
                 </div>
             </div>
         </c:forEach>

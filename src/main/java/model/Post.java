@@ -4,23 +4,25 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Post {
-    private Long id;
+   private Long id;
     private String title;
     private String author;
     private String content;
+
+
     private String createAt;
 
-    public Post(Long id, String title, String author, String content) {
-        this.id = id;
+    public Post( Long id,String title, String author, String content) {
+       this.id = id;
         this.title = title;
         this.author = author;
         this.content = content;
         this.createAt = createAt;
     }
 
-    public Long getId() {
+    /*public Long getId() {
         return id;
-    }
+    }*/
 
     public String getTitle() {
         return title;
