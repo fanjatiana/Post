@@ -29,8 +29,6 @@ public class PostService {
         System.out.println(posts.size());
         return newPost;
     }
-
-
     public Long getId() {
         return id;
     }
