@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@WebServlet(urlPatterns = "/form-posts")
+@WebServlet(urlPatterns = "/userSession/form-posts")
 public class FormPostsServlet extends HttpServlet {
 
     @Override
@@ -31,6 +31,6 @@ public class FormPostsServlet extends HttpServlet {
         String content = request.getParameter("content");
 
         new PostService().createNewPost(title, author, content);
-        response.sendRedirect(request.getContextPath() + "/posts-list");
+        response.sendRedirect(request.getContextPath() + "/userSession/posts-list");
     }
 }

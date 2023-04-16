@@ -12,7 +12,7 @@ import service.PostService;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/posts-list")
+@WebServlet(urlPatterns = "/userSession/posts-list")
 public class PostsListServlet extends HttpServlet {
 
     @Override
