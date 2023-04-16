@@ -21,16 +21,19 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email=req.getParameter("email");
         String password=req.getParameter("password");
-
         HttpSession session= req.getSession();
+        req.setAttribute("isError", "");
 
         if(email != null && email.equals("monEmail@email.com") && password != null && password.equals("petitChat44")){
             session.setAttribute("userEmail", email);
             session.setAttribute("userPassword",password);
             resp.sendRedirect(req.getContextPath()+"/userSession/posts-list");
-        } else{
-            req.setAttribute("isError", true);
+        } else if (!email.equals("monEmail@email.com")  || !password.equals("petitChat44")  ){
+            req.setAttribute("isError", "Oops utilisateur ou mot de passe inconnu");
             req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req,resp);
+            session.invalidate();
+        } else {
+            req.setAttribute("isError", "Une erreur obscure est apparue soudainement");
         }
     }
 }

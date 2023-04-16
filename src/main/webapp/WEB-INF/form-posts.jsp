@@ -10,11 +10,10 @@
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <title>Title</title>
+    <title>Add a post</title>
 </head>
 <body>
 <header>
-
   <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"> <h1>TP Post</h1></a>
@@ -40,9 +39,6 @@
       </div>
     </div>
   </nav>
-
-
-
 </header>
 <main>
   <div class="container-fluid">

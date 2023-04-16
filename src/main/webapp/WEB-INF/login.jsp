@@ -14,31 +14,28 @@
 </head>
 <body>
 <header>
-    <h1>Login</h1>
+    <h1 class="mt-5 mb-5 text-center">Login</h1>
 </header>
 <main>
-    <div class="container-fluid">
+    <div class="container-fluid d-flex flex-direction-column justify-content-center">
         <form method="post" action="${pageContext.request.contextPath}/login">
             <div class="mb-3 row">
-                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <label for="email" class="col-sm-2 col-form-label me-3">Email</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" name="email">
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                <label for="inputPassword" class="col-sm-2 col-form-label me-3">Password</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword" name="password">
+                    <input type="password" class="form-control" id="inputPassword" name="password" required>
                 </div>
             </div>
-
-            <p>${isError}Veuillez ressaisir les bonnes informations</p>
-
+            <p>${isError}</p>
             <button type="submit" class="btn btn-primary">To log in</button>
         </form>
     </div>
 </main>
 <footer></footer>
-
 </body>
 </html>
