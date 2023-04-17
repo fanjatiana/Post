@@ -26,7 +26,8 @@ public class LoginServlet extends HttpServlet {
 
         if(email != null && email.equals("monEmail@email.com") && password != null && password.equals("petitChat44")){
             session.setAttribute("userEmail", email);
-            session.setAttribute("userPassword",password);
+            //session.setAttribute("userPassword",password);
+            System.out.println(session.getAttribute("userEmail"));
             resp.sendRedirect(req.getContextPath()+"/userSession/posts-list");
         } else if (!email.equals("monEmail@email.com")  || !password.equals("petitChat44")  ){
             req.setAttribute("isError", "Oops utilisateur ou mot de passe inconnu");
