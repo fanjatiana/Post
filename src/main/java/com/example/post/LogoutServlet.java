@@ -14,12 +14,9 @@ public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /* si on souhaite supprimer la session et les données lors de la déconnexion :
+        // si on souhaite supprimer la session et les données lors de la déconnexion :
         HttpSession httpSession=req.getSession();
         httpSession.invalidate();
-        */
-
-        // ici on veut garder les données lorsque l'on se déconnecte
         resp.sendRedirect(req.getContextPath() + "/login");
     }
 }
