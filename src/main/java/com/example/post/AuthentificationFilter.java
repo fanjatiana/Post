@@ -17,7 +17,6 @@ public class AuthentificationFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = request;
         HttpServletResponse httpServletResponse = response;
-
         HttpSession httpSession=httpServletRequest.getSession();
 
         if(httpSession.getAttribute("email") != null && httpSession.getAttribute("password") != null){
