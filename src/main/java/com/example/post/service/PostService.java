@@ -1,5 +1,6 @@
 package com.example.post.service;
 
+import com.example.post.dao.PostJdbcDao;
 import com.example.post.model.Post;
 
 import java.util.ArrayList;
@@ -19,20 +20,25 @@ public class PostService {
         return this.posts;
     }
 
+    public List<Post> fetchAllPostsFromBdd() {
+        List<Post> bddPosts = new PostJdbcDao().findAll();
+        return bddPosts;
+    }
 
-    // incrémentation id
     Long id = 0L;
 
     public Post createNewPost(String title, String author, String content) {
         Post newPost = new Post(++id, title, author, content);
-        posts.add(newPost);
-        System.out.println(posts.size());
         return newPost;
     }
 
-    public static void deletePost(Long id){
+    ;
+
+
+    public static void deletePost(Long id) {
         posts.removeIf(post -> post.getId().equals(id));
     }
+
     public Long getId() {
         return id;
     }

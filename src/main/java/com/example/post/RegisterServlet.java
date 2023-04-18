@@ -29,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
         String email = req.getParameter("email");
 
-        User newUser = new RegisterService().createAUser(firstname,lastname,email,password);
+        User newUser = new RegisterService().createAUser(firstname, lastname, email, password);
         boolean newUserAdded = new UserJdbcDao().create(newUser);
         HttpSession session = req.getSession();
         if (newUserAdded) {
@@ -40,7 +40,6 @@ public class RegisterServlet extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
             session.invalidate();
         }
-
 
 
     }

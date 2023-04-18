@@ -1,5 +1,11 @@
 package com.example.post;
 
+import com.example.post.dao.PostJdbcDao;
+import com.example.post.dao.UserJdbcDao;
+import com.example.post.model.Post;
+import com.example.post.model.User;
+import com.example.post.model.UserLogin;
+import com.example.post.service.RegisterService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,15 +27,19 @@ public class FormPostsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // recupérer les données du formulaire form-posts (req.getParameter) et les afficher dans posts-list
-
         String title = request.getParameter("title");// recupère la valeur du name des inputs, textarea
+        System.out.println(title);
         //String postImage=request.getParameter("postImage");
         String author = request.getParameter("author");
         String content = request.getParameter("content");
+        Post newPost = new PostService().createNewPost(title, author, content);
+        System.out.println(newPost);
+        boolean newPostAdded = new PostJdbcDao().create(newPost);
+        if (newPostAdded) {
+            response.sendRedirect(request.getContextPath() + "/userSession/posts-list");
+        } else {
+            System.out.println("error!");
 
-
-
-        new PostService().createNewPost(title, author, content);
-        response.sendRedirect(request.getContextPath() + "/userSession/posts-list");
+        }
     }
 }

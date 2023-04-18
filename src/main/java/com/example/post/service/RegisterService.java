@@ -11,11 +11,11 @@ public class RegisterService {
 
     // create new user
 
-    public User createAUser(String firstname, String lastname, String password,String email){
+    public User createAUser(String firstname, String lastname, String password, String email) {
         Long id = 0L;
-            User newUser = new User(++id, firstname, lastname,password, email);
-            return newUser;
-        }
-
+        User newUser = new User(++id, firstname, lastname, password, email);
+        return newUser;
     }
+
+}
 
