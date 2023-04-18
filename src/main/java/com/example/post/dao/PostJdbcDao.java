@@ -72,11 +72,13 @@ public class PostJdbcDao implements PostDao {
         return null;
     }
 
+    // modifier
     @Override
     public void update(Post element) {
 
     }
 
+    //
     @Override
     public void delete(Post element) {
 
