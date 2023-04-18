@@ -1,4 +1,4 @@
-package model;
+package com.example.post.model;
 
 public class User {
     private Long id;

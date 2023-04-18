@@ -5,12 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Post;
-import service.PostService;
+import com.example.post.service.PostService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @WebServlet(urlPatterns = "/userSession/form-posts")

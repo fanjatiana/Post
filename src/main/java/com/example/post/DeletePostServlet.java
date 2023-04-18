@@ -1,15 +1,7 @@
 package com.example.post;
 
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import model.Post;
-import service.PostService;
-
-import java.io.IOException;
-import java.util.List;
 
 @WebServlet(urlPatterns = "/new-posts-list-after-delete")
 public class DeletePostServlet extends HttpServlet {

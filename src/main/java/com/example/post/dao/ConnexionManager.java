@@ -1,4 +1,4 @@
-package dao;
+package com.example.post.dao;
 
 
 import java.sql.Connection;

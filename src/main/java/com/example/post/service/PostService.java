@@ -1,6 +1,6 @@
-package service;
+package com.example.post.service;
 
-import model.Post;
+import com.example.post.model.Post;
 
 import java.util.ArrayList;
 import java.util.Arrays;

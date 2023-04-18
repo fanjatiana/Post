@@ -1,18 +1,17 @@
 package com.example.post;
 
-import dao.UserDao;
+import com.example.post.dao.UserJdbcDao;
+import com.example.post.model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.User;
-import model.UserLogin;
+import com.example.post.model.UserLogin;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet(urlPatterns = {"/", "/login"})
 public class LoginServlet extends HttpServlet {
@@ -29,11 +28,9 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         HttpSession session = req.getSession();
         req.setAttribute("isError", "");
-        try {
-            UserLogin user = new UserDao().findUser(email, password);
+            UserLogin user = new UserJdbcDao().findByUserEmailAndPassword(email, password);
             if (user != null) {
                 session.setAttribute("userEmail", email);
-                //session.setAttribute("userPassword",password);
                 System.out.println(session.getAttribute("userEmail"));
                 req.setAttribute("isError", "");
                 resp.sendRedirect(req.getContextPath() + "/userSession/posts-list");
@@ -43,9 +40,6 @@ public class LoginServlet extends HttpServlet {
                 session.invalidate();
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         /* login sans database
 
