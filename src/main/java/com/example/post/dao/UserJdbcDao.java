@@ -11,10 +11,7 @@ public class UserJdbcDao implements UserDao {
 
     List<User> userList = new ArrayList<>();
 
-    @Override
-    public boolean create(User entity) {
-        return false;
-    }
+
 
     public List<User> findAll() {
 
@@ -81,5 +78,26 @@ public class UserJdbcDao implements UserDao {
             e.printStackTrace();
         }
         return userLogin;
+    }
+
+    @Override
+    public boolean create(User newUser) {
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        Connection connection = ConnexionManager.getINSTANCE();
+        boolean insertOk = false;
+        try{
+            preparedStatement = connection.prepareStatement("INSERT INTO users (firstname, lastname, password , email) VALUES (?,?,?,?)");
+            preparedStatement.setString(1, newUser.getFirstname()); // définir des paramètre
+            preparedStatement.setString(2, newUser.getLastname());
+            preparedStatement.setString(3, newUser.getPassword());
+            preparedStatement.setString(4, newUser.getEmail());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            insertOk = rowsAffected>0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return insertOk;
     }
 }

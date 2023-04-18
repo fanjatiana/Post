@@ -35,6 +35,9 @@
             <button type="submit" class="btn btn-primary">To log in</button>
         </form>
     </div>
+    <div>
+        <a class="" href="register">Créer un compte</a>
+    </div>
 </main>
 <footer></footer>
 </body>
