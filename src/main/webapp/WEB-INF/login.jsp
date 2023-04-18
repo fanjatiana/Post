@@ -14,29 +14,37 @@
 </head>
 <body>
 <header>
-    <h1 class="mt-5 mb-5 text-center">Login</h1>
+    <div class="container-fluid d-flex justify-content-center">
+        <h1 class="mt-5 mb-5 col-6 text-center">Login</h1>
+    </div>
 </header>
 <main>
-    <div class="container-fluid d-flex flex-direction-column justify-content-center">
-        <form method="post" action="${pageContext.request.contextPath}/login">
-            <div class="mb-3 row">
-                <label for="email" class="col-sm-2 col-form-label me-3">Email</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" name="email" required>
+    <div class="container-fluid d-flex flex-column align-items-center justify-content-center row">
+        <div class="col-6" >
+            <form method="post" action="${pageContext.request.contextPath}/login">
+                <div class="mb-3 col-12">
+                    <label for="email" class="col-sm-2 col-form-label me-3">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-2 col-form-label me-3">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword" name="password" required>
+                <div class="mb-3 col-12">
+                    <label for="inputPassword" class="col-sm-2 col-form-label me-3">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword" name="password" required>
+                    </div>
                 </div>
-            </div>
-            <p>${isError}</p>
-            <button type="submit" class="btn btn-primary">To log in</button>
-        </form>
-    </div>
-    <div>
-        <a class="" href="register">Créer un compte</a>
+                <div  class="mb-3 col-12">
+                    <p>${isError}</p>
+                </div>
+                <div  class="mb-3 col-12">
+                    <button type="submit" class="btn btn-primary col-4">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <a class="" href="register">Créer un compte</a>
+        </div>
     </div>
 </main>
 <footer></footer>

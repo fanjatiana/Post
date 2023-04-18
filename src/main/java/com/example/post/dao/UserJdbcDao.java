@@ -18,7 +18,7 @@ public class UserJdbcDao implements UserDao {
         try {
             Connection connection = ConnexionManager.getINSTANCE();
             Statement statement = connection.createStatement(); //statement permet d'executer la requête
-            ResultSet resultSet = statement.executeQuery("SELECT id,firstname,lastname,password,email FROM users"); // resultSet = reponse
+            ResultSet resultSet = statement.executeQuery("SELECT id,firstname,lastname,email,password FROM userList"); // resultSet = reponse
 
             while (resultSet.next()) {
                 Long id = resultSet.getLong("id");
@@ -27,7 +27,7 @@ public class UserJdbcDao implements UserDao {
                 String password = resultSet.getString("password");
                 String email = resultSet.getString("email");
 
-                User newUser = new User(id, firstname, lastname, password, email);
+                User newUser = new User(id, firstname, lastname, email, password);
                 newUser.getId();
                 newUser.getFirstname();
                 newUser.getLastname();
@@ -66,7 +66,7 @@ public class UserJdbcDao implements UserDao {
         ResultSet resultSet;
         Connection connection = ConnexionManager.getINSTANCE();
         try {
-            preparedStatement = connection.prepareStatement("SELECT id,email, password FROM users WHERE email = ? AND password = ?");
+            preparedStatement = connection.prepareStatement("SELECT id,email, password FROM userList WHERE email = ? AND password = ?");
             preparedStatement.setString(1, inputValueEmail); // définir des paramètre
             preparedStatement.setString(2, inputValuePassword);
             resultSet = preparedStatement.executeQuery();
@@ -87,11 +87,11 @@ public class UserJdbcDao implements UserDao {
         Connection connection = ConnexionManager.getINSTANCE();
         boolean insertOk = false;
         try{
-            preparedStatement = connection.prepareStatement("INSERT INTO users (firstname, lastname, password , email) VALUES (?,?,?,?)");
+            preparedStatement = connection.prepareStatement("INSERT INTO userList (firstname, lastname, email, password) VALUES (?,?,?,?)");
             preparedStatement.setString(1, newUser.getFirstname()); // définir des paramètre
             preparedStatement.setString(2, newUser.getLastname());
-            preparedStatement.setString(3, newUser.getPassword());
-            preparedStatement.setString(4, newUser.getEmail());
+            preparedStatement.setString(3, newUser.getEmail());
+            preparedStatement.setString(4, newUser.getPassword());
 
             int rowsAffected = preparedStatement.executeUpdate();
             insertOk = rowsAffected>0;
