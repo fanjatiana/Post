@@ -1,5 +1,6 @@
 package com.example.post;
 
+import com.example.post.ressource.PostResource;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -17,9 +18,17 @@ public class PostsListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /* recupération depuis classe post
         PostService postService = new PostService();
-        //List<Post> postList = postService.fetchAllPosts();
-        List<Post> postList = postService.fetchAllPostsFromBdd();
+        List<Post> postList = postService.fetchAllPosts();*/
+
+        /* récupération depuis bdd
+        List<Post> postList = postService.fetchAllPostsFromBdd();*/
+
+        // récupération depuis json
+        PostResource postResource = new PostResource();
+        List<Post> postList = postResource.getPosts();
+
         request.setAttribute("postList", postList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/posts-list.jsp");
         requestDispatcher.forward(request, response);
