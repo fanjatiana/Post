@@ -11,5 +11,5 @@ public interface PostGenericDao<Post, ID> {
 
     void update(Post element);
 
-    void delete(Post element);
+    int delete(ID id);
 }

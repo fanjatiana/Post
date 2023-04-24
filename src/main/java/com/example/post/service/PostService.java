@@ -9,38 +9,26 @@ import java.util.List;
 
 public class PostService {
 
-    private static List<Post> posts = new ArrayList<>(Arrays.asList(
-            new Post(1L, "Aenean eu dapibus odio", "Pierre B.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Maecenas tortor justo, varius at erat id, laoreet posuere diam. Cras pellentesque efficitur lectus"),
-            new Post(2L, "vestibulum finibus felis sed", "Emma C.", "Suspendisse potenti.Sed placerat, dui suscipit laoreet ornare, felis risus sollicitudin magna, et sodales arcu mauris ac magna. "),
-            new Post(3L, "Proin eleifend lacinia luctus", "Isao L.", "nulla enim posuere mi, ac sagittis leo velit eget tortor.Donec mauris massa, finibus a tincidunt id, condimentum sed nibh")
-    ));
-
-
-    public List<Post> fetchAllPosts() {
-        return this.posts;
-    }
-
     public List<Post> fetchAllPostsFromBdd() {
         List<Post> bddPosts = new PostJdbcDao().findAll();
         return bddPosts;
     }
 
-    Long id = 0L;
-
+    int id = 0;
     public Boolean createNewPost(String title, String author, String content) {
         Post newPost = new Post(++id, title, author, content);
         boolean newPostAdded = new PostJdbcDao().create(newPost);
         return newPostAdded;
     }
 
-    ;
-
-
-    public static void deletePost(Long id) {
-        posts.removeIf(post -> post.getId().equals(id));
+    public List<Post> deletePost(int id) {
+        List<Post> bddPosts = new PostJdbcDao().findAll();
+        int thisId = new PostJdbcDao().delete(id);
+        bddPosts.removeIf(post -> post.equals(thisId));
+        return bddPosts;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 }

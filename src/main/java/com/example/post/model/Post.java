@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Post {
-   private Long id;
+   private int id;
     private String title;
     private String author;
     private String content;
@@ -12,7 +12,7 @@ public class Post {
 
     private String createAt;
 
-    public Post( Long id,String title, String author, String content) {
+    public Post( int id,String title, String author, String content) {
        this.id = id;
         this.title = title;
         this.author = author;
@@ -44,11 +44,11 @@ public class Post {
         return formatDateTime;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

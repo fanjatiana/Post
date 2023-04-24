@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import com.example.post.model.Post;
 import com.example.post.service.PostService;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,5 +33,19 @@ public class PostsListServlet extends HttpServlet {
         request.setAttribute("postList", postList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/posts-list.jsp");
         requestDispatcher.forward(request, response);
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String btnId = req.getParameter("buttonId");
+        HttpSession session = req.getSession();
+        session.setAttribute("buttonId", btnId);
+        PostService postService = new PostService();
+        List<Post> postList = postService.deletePost(Integer.parseInt(btnId));
+        System.out.println("id session" + session + " " + btnId);
+        req.setAttribute("postList", postList);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/posts-list.jsp");
+        requestDispatcher.forward(req, resp);
     }
 }
