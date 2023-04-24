@@ -11,7 +11,7 @@ import java.util.List;
 @Path("/myposts")
 public class PostResource {
     // recupérer les posts
-    List<Post> posts = new PostService().fetchAllPosts();
+    List<Post> posts = new PostService().fetchAllPostsFromBdd();
     @GET
     @Produces(value = MediaType.APPLICATION_JSON)
     public List<Post> getPosts() {
@@ -23,32 +23,6 @@ public class PostResource {
     @Path("/{id}")
     @Produces(value = MediaType.APPLICATION_JSON)
     public Response getMessageById(@PathParam("id") Long id) {
-
-       /* if (id.toString().equals("1")) {
-            return Response
-                    .status(Response.Status.CREATED) //
-                    .entity(posts.get(0)) //
-                    .build();
-        } else if (id.toString().equals("2")) {
-            return Response
-                    .status(Response.Status.CREATED) //
-                    .entity(posts.get(1)) //
-                    .build();
-        } else if (id.toString().equals("3")) {
-            return Response
-                    .status(Response.Status.CREATED) //
-                    .entity(posts.get(2)) //
-                    .build();
-        } else if (id.toString().equals("4")) {
-            return Response
-                    .status(Response.Status.CREATED) //
-                    .entity(posts.get(3)) //
-                    .build();
-        }
-        return Response
-                .status(Response.Status.BAD_REQUEST).
-                entity("ID de message invalide").build();
-    }*/
         if (id >= 1 && id <= posts.size()) {
             return Response
                     .status(Response.Status.CREATED) //
@@ -61,7 +35,6 @@ public class PostResource {
         }
     }
 
-
     // le serveur va recevoir du json
     @POST
     // le serveur va produire du json
@@ -73,8 +46,6 @@ public class PostResource {
                 .entity(posts) //
                 .build(); // construction JAVA ==> JSON
     }
-
-
 }
 
 

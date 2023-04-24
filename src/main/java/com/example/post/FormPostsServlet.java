@@ -32,9 +32,7 @@ public class FormPostsServlet extends HttpServlet {
         //String postImage=request.getParameter("postImage");
         String author = request.getParameter("author");
         String content = request.getParameter("content");
-        Post newPost = new PostService().createNewPost(title, author, content);
-        System.out.println(newPost);
-        boolean newPostAdded = new PostJdbcDao().create(newPost);
+        Boolean newPostAdded = new PostService().createNewPost(title,author,content);
         if (newPostAdded) {
             response.sendRedirect(request.getContextPath() + "/userSession/posts-list");
         } else {

@@ -27,9 +27,10 @@ public class PostService {
 
     Long id = 0L;
 
-    public Post createNewPost(String title, String author, String content) {
+    public Boolean createNewPost(String title, String author, String content) {
         Post newPost = new Post(++id, title, author, content);
-        return newPost;
+        boolean newPostAdded = new PostJdbcDao().create(newPost);
+        return newPostAdded;
     }
 
     ;
