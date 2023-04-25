@@ -8,9 +8,7 @@ import java.util.List;
 
 public class RegisterService {
     private List<User> newUser = new ArrayList<>();
-
     // create new user
-
     public User createAUser(String firstname, String lastname, String password, String email) {
         Long id = 0L;
         User newUser = new User(++id, firstname, lastname, password, email);
