@@ -9,7 +9,7 @@ public interface PostGenericDao<Post, ID> {
 
     Post findById(ID id);
 
-    void update(Post element);
+  void update(Post element);
 
     int delete(ID id);
 }

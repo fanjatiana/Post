@@ -38,7 +38,46 @@ public class PostsListServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String btnId = req.getParameter("buttonId");
+      /*  HttpSession session = req.getSession();
+        String choice = req.getParameter("supprimer") != null ? "supprimer" : "modifier";
+        if (choice.equals("supprimer")) {
+            session.setAttribute("choice", choice);
+            PostService postService = new PostService();
+            List<Post> postList = postService.deletePost(Integer.parseInt(choice));
+            System.out.println("id session" + session + " " + choice);
+            req.setAttribute("postList", postList);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/posts-list.jsp");
+            requestDispatcher.forward(req, resp);
+        } else if (choice.equals("modifier")) {
+            session.setAttribute("choice", choice);
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/form-posts.jsp");
+            requestDispatcher.forward(req, resp);
+            resp.sendRedirect(req.getContextPath()+"/userSession/form-posts");
+        }*/
+        HttpSession session = req.getSession();
+        PostService postService = new PostService();
+        String btnDelete = req.getParameter("buttonId");
+        String btnUpdate = req.getParameter("btnUpdate");
+         if(btnDelete != null){
+             session.setAttribute("buttonId", btnDelete);
+
+             List<Post> postList = postService.deletePost(Integer.parseInt(btnDelete));
+             System.out.println("id session" + session + " " + btnDelete);
+             req.setAttribute("postList", postList);
+             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/posts-list.jsp");
+             requestDispatcher.forward(req, resp);
+         }else if(btnUpdate != null){
+             session.setAttribute("btnUpdate", btnUpdate);
+             System.out.println(btnUpdate);
+             Post thispost = postService.getPostById(Integer.parseInt(btnUpdate));
+             Post postUpdate = postService.updatePost(thispost);
+             req.setAttribute("post", postUpdate);
+             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/form-posts.jsp");
+             requestDispatcher.forward(req, resp);
+             resp.sendRedirect(req.getContextPath()+"/userSession/form-posts");
+         }
+
+       /* String btnUpdate = req.getParameter("btnUpdate");
         HttpSession session = req.getSession();
         session.setAttribute("buttonId", btnId);
         PostService postService = new PostService();
@@ -46,6 +85,6 @@ public class PostsListServlet extends HttpServlet {
         System.out.println("id session" + session + " " + btnId);
         req.setAttribute("postList", postList);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/posts-list.jsp");
-        requestDispatcher.forward(req, resp);
+        requestDispatcher.forward(req, resp);*/
     }
 }

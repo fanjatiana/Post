@@ -66,15 +66,43 @@ public class PostJdbcDao implements PostDao {
 
     @Override
     public Post findById(Integer integer) {
-        return null;
+        try {
+            Connection connection = ConnexionManager.getINSTANCE();
+            Statement statement = connection.createStatement(); //statement permet d'executer la requête
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM postList"); // resultSet = reponse
+            if (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String title = resultSet.getString("title");
+                String author = resultSet.getString("author");
+                String content = resultSet.getString("content");
+                Post post = new Post(id, title, author, content);
+                return post;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    // modifier
+
     @Override
     public void update(Post element) {
+        Connection connection = ConnexionManager.getINSTANCE();
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE postList SET title=?,author=?, content=? WHERE id=?");
+           preparedStatement.setInt(1, element.getId());
+            preparedStatement.setString(2, element.getTitle());
+            preparedStatement.setString(3, element.getAuthor());
+            preparedStatement.setString(4, element.getContent());
+            // définir des paramètre
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
-
 
     @Override
     public int delete(Integer id) {
